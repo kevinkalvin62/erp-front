@@ -31,14 +31,13 @@ const RegistroUsuario = ({ currentUser }) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:3001/api/registrar-usuario', formData);
+      await axios.post('http://localhost:3001/api/usuarios', formData);
       setMensaje('Usuario registrado correctamente ✅');
       setFormData({
         nombre: '',
         correo: '',
         username: '',
         password: '',
-        role_id: '',
       });
     } catch (err) {
       setMensaje('❌ Error al registrar el usuario');
@@ -46,11 +45,7 @@ const RegistroUsuario = ({ currentUser }) => {
     }
   };
 
-  // Solo permitir si es superadmin
-  if (currentUser?.role !== 'superadmin') {
-    return <p>Acceso denegado 🚫</p>;
-  }
-
+  
   return (
     <div className="container mt-4">
       <h3>Registrar Nuevo Usuario</h3>
@@ -101,20 +96,7 @@ const RegistroUsuario = ({ currentUser }) => {
           />
         </div>
         <div className="col-md-6">
-          <select
-            name="role_id"
-            className="form-select"
-            value={formData.role_id}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Selecciona un rol</option>
-            {roles.map((r) => (
-              <option key={r.id} value={r.id}>
-                {r.name}
-              </option>
-            ))}
-          </select>
+          
         </div>
         <div className="col-12">
           <button type="submit" className="btn btn-success">Registrar Usuario</button>

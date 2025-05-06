@@ -20,15 +20,10 @@ const Sidebar = ({ user }) => {
         <li className="nav-item">
           <NavLink to="/dashboard/recursos-humanos" className="nav-link text-white">Recursos Humanos</NavLink>
         </li>
-
-        {/* 🔐 Solo para superadmin */}
-        {user?.role === 'superadmin' && (
           <li className="nav-item">
-            <NavLink to="/dashboard/registro-usuario" className="nav-link text-warning">
-              Registro de Usuario
-            </NavLink>
+            <NavLink to="/dashboard/RegistroUsuario" className="nav-link text-warning">Registro de Usuario</NavLink>
           </li>
-        )}
+        
       </ul>
     </div>
   );
